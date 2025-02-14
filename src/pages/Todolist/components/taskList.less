@@ -1,0 +1,29 @@
+.task {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	border-bottom: 1px solid #f0f0f0;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.taskName {
+	flex: 1;
+	margin: 0 8px;
+}
+
+.taskNameDone {
+	text-decoration: line-through;
+	opacity: 0.5;
+}
+
+.taskActions {
+	display: flex;
+	gap: 4px;
+}
+
+.card {
+	margin-bottom: 10px;
+}
