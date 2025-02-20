@@ -1,199 +1,197 @@
 .subject-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    &__overlay {
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.45);
-      z-index: 999;
-    }
-  
-    &__content {
-      background: #fff;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 1200px;
-      max-height: 80vh;
-      overflow: auto;
-      position: relative;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-  
-    &__header {
-      padding: 16px 24px;
-      border-bottom: 1px solid #d9d9d9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-  
-      h4 {
-        margin: 0;
-        font-size: 18px;
-        font-weight: 600;
-      }
-    }
-  
-    &__body {
-      padding: 24px;
-    }
-  
-    &__footer {
-      padding: 16px 24px;
-      border-top: 1px solid #d9d9d9;
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-  }
-  
-  .form-section {
-    margin-bottom: 24px;
-  
-    &__title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-  
-    &__grid {
-      display: grid;
-      gap: 16px;
-  
-      &--two-cols {
-        grid-template-columns: 1fr 1fr;
-        
-        @media (max-width: 768px) {
-          grid-template-columns: 1fr;
-        }
-      }
-    }
-  }
-  
-  .form-group {
-    margin-bottom: 16px;
-  
-    &__label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-  
-    &__input {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #d9d9d9;
-      border-radius: 4px;
-      
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2);
-      }
-    }
-  
-    &__textarea {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #d9d9d9;
-      border-radius: 4px;
-      min-height: 100px;
-      resize: vertical;
-      
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2);
-      }
-    }
-  }
-  
-  .goals-section {
-    border-top: 1px solid #d9d9d9;
-    padding-top: 24px;
-    margin-top: 24px;
-  
-    &__progress {
-      margin: 16px 0;
-  
-      &-bar {
-        height: 8px;
-        background: #f0f0f0;
-        border-radius: 4px;
-        overflow: hidden;
-  
-        &-fill {
-          height: 100%;
-          transition: width 0.3s ease;
-        }
-      }
-  
-      &-text {
-        margin-top: 8px;
-        color: #666666;
-        font-size: 14px;
-      }
-    }
-  
-    &__status {
-      background: #f5f5f5;
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 16px;
-  
-      &-title {
-        font-weight: 500;
-        margin-bottom: 8px;
-      }
-  
-      &-text {
-        font-size: 14px;
-        color: #666666;
-  
-        &--success {
-          color: #52c41a;
-        }
-      }
-    }
-  }
-  
-  .button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-  
-    &--primary {
-      color: #fff;
-  
-      &:hover {
-      }
-    }
-  
-    &--secondary {
-      background-color: #fff;
-      border-color: #d9d9d9;
-      color: #000000;
-  
+	position: fixed;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	inset: 0;
 
-    }
-  }
-  
-  .close-button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 4px 8px;
-    color: #666666;
-    
-    &:hover {
-      color: #000000;
-    }
-  }
-  
+	&__overlay {
+		position: fixed;
+		z-index: 999;
+		inset: 0;
+	}
+
+	&__content {
+		position: relative;
+		z-index: 1000;
+		width: 90%;
+		max-width: 1200px;
+		max-height: 80vh;
+		overflow: auto;
+		border-radius: 8px;
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 16px 24px;
+
+		h4 {
+			margin: 0;
+			font-weight: 600;
+			font-size: 18px;
+		}
+	}
+
+	&__body {
+		padding: 24px;
+	}
+
+	&__footer {
+		display: flex;
+		gap: 12px;
+		justify-content: flex-end;
+		padding: 16px 24px;
+	}
+}
+
+.form-section {
+	margin-bottom: 24px;
+
+	&__title {
+		margin-bottom: 16px;
+		font-weight: 600;
+		font-size: 16px;
+	}
+
+	&__grid {
+		display: grid;
+		gap: 16px;
+
+		&--two-cols {
+			grid-template-columns: 1fr 1fr;
+
+			@media (max-width: 768px) {
+				grid-template-columns: 1fr;
+			}
+		}
+	}
+}
+
+.form-group {
+	margin-bottom: 16px;
+
+	&__label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: 500;
+	}
+
+	&__input {
+		width: 100%;
+		padding: 8px 12px;
+		border-radius: 4px;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__textarea {
+		width: 100%;
+		min-height: 100px;
+		padding: 8px 12px;
+		border-radius: 4px;
+		resize: vertical;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.goals-section {
+	margin-top: 24px;
+	padding-top: 24px;
+
+	&__progress {
+		margin: 16px 0;
+
+		&-bar {
+			height: 8px;
+			overflow: hidden;
+			border-radius: 4px;
+
+			&-fill {
+				height: 100%;
+				transition: width 0.3s ease;
+			}
+		}
+
+		&-text {
+			margin-top: 8px;
+			font-size: 14px;
+		}
+	}
+
+	&__status {
+		margin-top: 16px;
+		padding: 16px;
+		border-radius: 8px;
+
+		&-title {
+			margin-bottom: 8px;
+			font-weight: 500;
+		}
+
+		&-text {
+			font-size: 14px;
+		}
+	}
+}
+
+.button {
+	padding: 8px 16px;
+	font-weight: 500;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.close-button {
+	padding: 4px 8px;
+	font-size: 20px;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.formGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+.goalsSection {
+	margin: 24px 0;
+}
+
+.progressSection {
+	margin: 16px 0;
+}
+
+.progressText {
+	margin-top: 8px;
+}
+
+.footer {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	margin-top: 24px;
+
+	button {
+		min-width: 80px;
+	}
+}
+
+.ant-modal {
+	z-index: 1001 !important;
+}

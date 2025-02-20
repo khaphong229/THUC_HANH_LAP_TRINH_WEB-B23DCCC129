@@ -1,117 +1,94 @@
 import { useState } from 'react';
-
-interface Subject {
-	id: string;
-	name: string;
-	time: string | null;
-	duration: string | null;
-	content: string | null;
-	notes?: string | null;
-}
+import type { IRecord } from '@/services/Subject/typing';
 
 export default () => {
-	const [subs, setSubs] = useState<Subject[]>([]);
-	const [currentSubs, setCurrentSubs] = useState<Subject | null>(null);
+	const [subs, setSubs] = useState<IRecord[]>([]);
+	const [currentSubs, setCurrentSubs] = useState<IRecord | null>(null);
+	const [openForm, setOpenForm] = useState<boolean>(false);
+	const [selectedSub, setSelectedSub] = useState<IRecord | null>(null);
 
 	const getSubsList = () => {
-		const subsString = localStorage.getItem('subs');
-		const subsObj: Subject[] = JSON.parse(subsString || '[]');
+		const subsString = localStorage.getItem('subjects');
+		const subsObj: IRecord[] = JSON.parse(subsString || '[]');
 		setSubs(subsObj);
 	};
 
-	const syncToLocal = (handler: (subs: Subject[]) => Subject[]) => {
-		const subsString = localStorage.getItem('subs');
-		const subsObj: Subject[] = JSON.parse(subsString || '[]');
-		const newSubsObj = handler(subsObj);
-		localStorage.setItem('subs', JSON.stringify(newSubsObj));
-	};
-
 	const addSub = (name: string) => {
-		const sub: Subject = {
-			name,
-			time: null,
-			duration: null,
-			content: null,
-			notes: null,
+		const newSub: IRecord = {
 			id: new Date().toISOString(),
+			name,
 		};
-		setSubs((prev) => [...prev, sub]);
-		syncToLocal((subsObj) => [...subsObj, sub]);
-	};
-
-	const updateSubStatus = (id: string, done: boolean) => {
-		setSubs((prev) => {
-			return prev.map((sub) => {
-				if (sub.id === id) {
-					return { ...sub, done };
-				}
-				return sub;
-			});
-		});
-		setSubs((prev) => {
-			return prev.map((sub) => {
-				if (sub.id === id) {
-					return { ...sub, done };
-				}
-				return sub;
-			});
-		});
+		setSubs((prev) => [...prev, newSub]);
+		localStorage.setItem('subjects', JSON.stringify([...subs, newSub]));
 	};
 
 	const startEdit = (id: string) => {
-		const findedTodo = subs.find((sub) => sub.id === id);
-		if (findedTodo) {
-			setCurrentSubs(findedTodo);
+		const findedSub = subs.find((sub) => sub.id === id);
+		if (findedSub) {
+			setCurrentSubs(findedSub);
 		}
 	};
 
 	const editSub = (name: string) => {
-		setCurrentSubs((prev: Subject | null) => {
+		setCurrentSubs((prev) => {
 			if (prev) return { ...prev, name };
 			return null;
 		});
 	};
 
 	const finishEdit = () => {
-		const handler = (subObj: Subject[]) => {
-			return subObj.map((sub) => {
-				if (sub.id === (currentSubs as Subject).id) {
-					return currentSubs as Subject;
-				}
-				return sub;
-			});
-		};
-		setSubs(handler);
+		if (!currentSubs) return;
+		const newSubs = subs.map((sub) => {
+			if (sub.id === currentSubs.id) {
+				return currentSubs;
+			}
+			return sub;
+		});
+		setSubs(newSubs);
 		setCurrentSubs(null);
-		syncToLocal(handler);
+		localStorage.setItem('subjects', JSON.stringify(newSubs));
 	};
 
 	const deleteSub = (id: string) => {
-		if (currentSubs) {
-			setCurrentSubs(null);
-		}
-		const handler = (subObj: Subject[]) => {
-			const findedIndexSub = subObj.findIndex((sub) => sub.id === id);
-			if (findedIndexSub > -1) {
-				const result = [...subObj];
-				result.splice(findedIndexSub, 1);
-				return result;
-			}
-			return subObj;
-		};
-		setSubs(handler);
-		syncToLocal(handler);
+		const newSubs = subs.filter((sub) => sub.id !== id);
+		setSubs(newSubs);
+		localStorage.setItem('subjects', JSON.stringify(newSubs));
+	};
+
+	const handleCardClick = (sub: IRecord) => {
+		setSelectedSub(sub);
+		setOpenForm(true);
+	};
+
+	const handleCloseDetails = () => {
+		setOpenForm(false);
+		setSelectedSub(null);
+	};
+
+	const handleEditFromTable = (id: string) => {
+		startEdit(id);
+		setOpenForm(false);
+	};
+
+	const handleDeleteFromTable = (id: string) => {
+		deleteSub(id);
+		setOpenForm(false);
 	};
 
 	return {
 		subs,
 		currentSubs,
+		openForm,
+		selectedSub,
 		getSubsList,
 		addSub,
-		updateSubStatus,
 		startEdit,
 		editSub,
 		finishEdit,
 		deleteSub,
+		handleCardClick,
+		handleCloseDetails,
+		handleEditFromTable,
+		handleDeleteFromTable,
 	};
 };
