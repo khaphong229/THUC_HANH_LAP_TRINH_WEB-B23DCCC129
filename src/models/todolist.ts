@@ -37,6 +37,14 @@ export default () => {
 				return todo;
 			});
 		});
+		syncToLocal((prev) => {
+			return prev.map((todo) => {
+				if (todo.id === id) {
+					return { ...todo, done };
+				}
+				return todo;
+			});
+		});
 	};
 
 	const startEdit = (id: string) => {
