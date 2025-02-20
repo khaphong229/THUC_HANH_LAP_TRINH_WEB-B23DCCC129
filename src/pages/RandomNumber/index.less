@@ -1,0 +1,150 @@
+.game-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.game-card {
+	width: 450px;
+	max-width: 90%;
+	padding: 32px;
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.game-title {
+	margin: 0 0 8px;
+	color: #1a1a1a;
+	font-weight: 700;
+	font-size: 28px;
+	text-align: center;
+}
+
+.game-instruction {
+	margin-bottom: 24px;
+	color: #666;
+	font-size: 16px;
+	text-align: center;
+}
+
+.input-section {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 16px;
+}
+
+.number-input {
+	width: 160px !important;
+	height: 40px;
+	font-size: 16px;
+}
+
+.attempt-counter {
+	margin-bottom: 24px;
+	color: #555;
+	font-size: 15px;
+	text-align: center;
+}
+
+.attempt-warning {
+	color: #ff4d4f;
+	font-weight: 500;
+}
+
+.button-group {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	margin-bottom: 32px;
+}
+
+.guess-button,
+.reset-button {
+	min-width: 100px;
+	height: 40px;
+	font-size: 15px;
+	border-radius: 6px;
+}
+
+//   .guess-button {
+//     background: #1890ff;
+//     border-color: #1890ff;
+//   }
+
+//   .guess-button:hover {
+//     background: #40a9ff;
+//     border-color: #40a9ff;
+//   }
+
+//   .reset-button {
+//     background: white;
+//     border-color: #d9d9d9;
+//   }
+
+//   .reset-button:hover {
+//     color: #40a9ff;
+//     border-color: #40a9ff;
+//   }
+
+.history-section {
+	padding: 16px;
+	background: #f9f9f9;
+	border-radius: 8px;
+}
+
+.history-title {
+	margin: 0 0 12px;
+	color: #333;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+.history-container {
+	max-height: 200px;
+	padding: 8px 4px;
+	overflow-y: auto;
+}
+
+.history-item {
+	padding: 8px 0;
+	color: #555;
+	font-size: 14px;
+	border-bottom: 1px solid #eee;
+}
+
+.history-item:last-child {
+	border-bottom: none;
+}
+
+.attempt-number {
+	color: #333;
+	font-weight: 500;
+}
+
+.no-history {
+	padding: 16px 0;
+	color: #999;
+	font-style: italic;
+	text-align: center;
+}
+
+@media (max-width: 480px) {
+	.game-card {
+		padding: 24px 16px;
+	}
+
+	.game-title {
+		font-size: 24px;
+	}
+
+	.button-group {
+		gap: 10px;
+	}
+
+	.guess-button,
+	.reset-button {
+		min-width: 90px;
+	}
+}

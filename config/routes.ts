@@ -42,6 +42,12 @@
 		name: 'Todolist',
 		icon: 'FormOutlined',
 	},
+	{
+		path: '/RandomNumber',
+		component: './RandomNumber',
+		name: 'RandomNumber',
+		icon: 'FieldBinaryOutlined',
+	},
 
 	// DANH MUC HE THONG
 	// {
