@@ -43,11 +43,17 @@
 		icon: 'FormOutlined',
 	},
 	{
-		path: '/RandomNumber',
+		path: '/subject-management',
+		component: './SubjectManagement',
+		name: 'Quản lý môn học',
+		icon: 'HeatMapOutlined',
+	},
+   {
+   	path: '/RandomNumber',
 		component: './RandomNumber',
 		name: 'RandomNumber',
-		icon: 'FieldBinaryOutlined',
-	},
+		icon: 'FieldBinaryOutlined',  
+   },
 
 	// DANH MUC HE THONG
 	// {
