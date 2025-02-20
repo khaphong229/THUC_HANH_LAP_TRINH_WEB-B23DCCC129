@@ -48,6 +48,12 @@
 		name: 'Quản lý môn học',
 		icon: 'HeatMapOutlined',
 	},
+   {
+   	path: '/RandomNumber',
+		component: './RandomNumber',
+		name: 'RandomNumber',
+		icon: 'FieldBinaryOutlined',  
+   },
 
 	// DANH MUC HE THONG
 	// {
