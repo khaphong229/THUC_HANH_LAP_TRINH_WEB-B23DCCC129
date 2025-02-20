@@ -42,6 +42,12 @@
 		name: 'Todolist',
 		icon: 'FormOutlined',
 	},
+	{
+		path: '/subject-management',
+		component: './SubjectManagement',
+		name: 'Quản lý môn học',
+		icon: 'HeatMapOutlined',
+	},
 
 	// DANH MUC HE THONG
 	// {
