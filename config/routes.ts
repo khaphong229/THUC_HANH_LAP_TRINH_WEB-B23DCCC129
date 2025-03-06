@@ -1,4 +1,5 @@
-﻿export default [
+﻿
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -54,6 +55,12 @@
 		name: 'RandomNumber',
 		icon: 'FieldBinaryOutlined',  
    },
+   {
+	path: '/KeoBuaBao',
+	 component: './KeoBuaBao',
+	 name: 'KeoBuaBao',
+	 icon: 'FieldBinaryOutlined',  
+},
 
 	// DANH MUC HE THONG
 	// {
