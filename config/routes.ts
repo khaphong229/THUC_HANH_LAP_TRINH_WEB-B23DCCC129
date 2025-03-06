@@ -83,6 +83,13 @@
 		],
 	},
 
+	{
+		path: '/KeoBuaBao',
+		component: './KeoBuaBao',
+		name: 'KeoBuaBao',
+		icon: 'FieldBinaryOutlined',
+	},
+
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',

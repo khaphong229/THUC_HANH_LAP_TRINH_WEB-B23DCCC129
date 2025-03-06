@@ -21,7 +21,7 @@ export default defineConfig({
 		// enable: true,
 		default: 'vi-VN',
 		antd: true,
-		// default true, when it is true, will use `navigator.language` overwrite default
+		// default true, when it is true, will use navigator.language overwrite default
 		baseNavigator: false,
 		// baseSeparator: '_',
 	},
