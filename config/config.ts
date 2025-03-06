@@ -64,7 +64,4 @@ export default defineConfig({
 		}
 		return result;
 	}, {}),
-	model: {
-		strict: true,
-	},
 });

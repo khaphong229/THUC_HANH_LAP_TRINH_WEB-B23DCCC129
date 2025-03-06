@@ -48,12 +48,40 @@
 		name: 'Quản lý môn học',
 		icon: 'HeatMapOutlined',
 	},
-   {
-   	path: '/RandomNumber',
+	{
+		path: '/RandomNumber',
 		component: './RandomNumber',
 		name: 'RandomNumber',
-		icon: 'FieldBinaryOutlined',  
-   },
+		icon: 'FieldBinaryOutlined',
+	},
+	{
+		path: '/ngan-hang-de-thi',
+		component: './QuestionBankManagement',
+		name: 'Quản lý ngân hàng câu hỏi',
+		icon: 'BankOutlined',
+		routes: [
+			{
+				name: 'Khối kiến thức',
+				path: 'khoi-kien-thuc',
+				component: './QuestionBankManagement/KhoiKienThuc',
+			},
+			{
+				name: 'Môn học',
+				path: 'mon-hoc',
+				component: './QuestionBankManagement/MonHoc',
+			},
+			{
+				name: 'Câu hỏi',
+				path: 'cau-hoi',
+				component: './QuestionBankManagement/CauHoi',
+			},
+			{
+				name: 'Đề thi',
+				path: 'de-thi ',
+				component: './QuestionBankManagement/DeThi',
+			},
+		],
+	},
 
 	// DANH MUC HE THONG
 	// {

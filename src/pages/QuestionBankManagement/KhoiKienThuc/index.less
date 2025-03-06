@@ -1,0 +1,65 @@
+@primary-color: #2563eb; // Màu xanh của Tailwind
+@danger-color: #dc2626; // Màu đỏ của Tailwind
+
+.knowledge-category {
+	max-width: 400px;
+	margin: auto;
+	padding: 16px;
+
+	h2 {
+		margin-bottom: 8px;
+		font-weight: bold;
+		font-size: 1.25rem;
+	}
+
+	.input-group {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 16px;
+
+		input {
+			flex: 1;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		button {
+			padding: 8px 16px;
+			color: white;
+			background-color: @primary-color;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: darken(@primary-color, 10%);
+			}
+		}
+	}
+
+	ul {
+		padding: 0;
+		list-style: none;
+
+		li {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 8px;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+
+			button {
+				color: @danger-color;
+				background: none;
+				border: none;
+				cursor: pointer;
+
+				&:hover {
+					color: darken(@danger-color, 10%);
+				}
+			}
+		}
+	}
+}
