@@ -51,13 +51,19 @@
 	{
 		path: '/RandomNumber',
 		component: './RandomNumber',
-		name: 'RandomNumber',
+		name: 'Đoán số',
 		icon: 'FieldBinaryOutlined',
+	},
+	{
+		path: '/KeoBuaBao',
+		component: './KeoBuaBao',
+		name: 'Kéo Búa Bao',
+		icon: 'DislikeOutlined',
 	},
 	{
 		path: '/ngan-hang-de-thi',
 		component: './QuestionBankManagement',
-		name: 'Quản lý ngân hàng câu hỏi',
+		name: 'Ngân hàng đề thi',
 		icon: 'BankOutlined',
 		routes: [
 			{
@@ -81,13 +87,6 @@
 				component: './QuestionBankManagement/DeThi',
 			},
 		],
-	},
-
-	{
-		path: '/KeoBuaBao',
-		component: './KeoBuaBao',
-		name: 'KeoBuaBao',
-		icon: 'FieldBinaryOutlined',
 	},
 
 	// DANH MUC HE THONG
