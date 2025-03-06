@@ -1,48 +1,21 @@
 import React, { useState } from 'react';
-import { Button, Card, message } from 'antd';
-import 'antd/dist/antd.css';
+import { Button, message } from 'antd';
+import './index.less';
+import ChoiceButton from './components/ChoiceButton';
+import GameHistory from './components/GameHistory';
+import { choices, getRandomChoice, getResult } from './components/LogicGame';
 
-const choices = ['Búa', 'Bao', 'Kéo'];
-const dictionaryChoices = {
-    'Búa': {
-        'Thắng': 'Kéo',
-        'Thua': 'Bao',
-        'Hòa': 'Búa'
-    },
-    'Bao': {
-        'Thắng': 'Búa',
-        'Thua': 'Kéo',
-        'Hòa': 'Bao'
-    },
-    'Kéo': {
-        'Thắng': 'Bao',
-        'Thua': 'Búa',
-        'Hòa': 'Kéo'
-    }
-};
-
-const getRandomChoice = () => choices[Math.floor(Math.random() * choices.length)];
 
 const KeoBuaBao = () => {
     const [history, setHistory] = useState([]);
     const [gameCount, setGameCount] = useState(1);
 
     const handleGuess = (userChoice) => {
-        const randomChoice = getRandomChoice();
-        let result = '';
+        const computerChoice = getRandomChoice();
+        const { message: resultMessage, type } = getResult(userChoice, computerChoice);
 
-        if (dictionaryChoices[userChoice]["Thắng"] === randomChoice) {
-            result = `Bạn thắng! Lựa chọn của bạn là ${userChoice}, của máy là ${randomChoice}`;
-            message.success("Bạn đã thắng!");
-        } else if (dictionaryChoices[userChoice]["Hòa"] === randomChoice) {
-            result = `Hòa! Lựa chọn của bạn là ${userChoice}, của máy là ${randomChoice}`;
-            message.info("Bạn đã hòa!");
-        } else {
-            result = `Bạn thua! Lựa chọn của bạn là ${userChoice}, của máy là ${randomChoice}`;
-            message.warning("Bạn đã thua!");
-        }
-
-        setHistory(prevHistory => [...prevHistory, result]);
+        message[type](resultMessage);
+        setHistory(prevHistory => [...prevHistory, `Game ${gameCount} Bạn chọn ${userChoice}, máy chọn ${computerChoice}. ${resultMessage}`]);
         setGameCount(prevCount => prevCount + 1);
     };
 
@@ -53,33 +26,19 @@ const KeoBuaBao = () => {
 
     return (
         <div>
-            <h3>Chọn của bạn:</h3>
-            <div>
-                {choices.map(choice => (
-                    <Button
-                        key={choice}
-                        type='primary'
-                        onClick={() => handleGuess(choice)}
-                    >
-                        {choice}
-                    </Button>
-                ))}
+            <div className='container'>
+                <h3>Chọn của bạn:</h3>
+                <div>
+                    {choices.map(choice => (
+                        <ChoiceButton className='choice-buttons' key={choice} choice={choice} onClick={handleGuess} />
+                    ))}
+                </div>
+                <Button key="reset" onClick={resetGame} type="danger" className='reset-button'>
+                    Reset
+                </Button>
             </div>
-            <Button
-                key="reset"
-                onClick={resetGame}
-                type='danger'
-            >
-                Reset
-            </Button>
-            <div>
-                {history.length > 0 && <h3>Lịch sử trò chơi:</h3>}
-                {history.map((result, index) => (
-                    <Card key={index}>
-                        <p>{result}</p>
-                    </Card>
-                ))}
-            </div>
+           
+            <GameHistory history={history} />
         </div>
     );
 };
