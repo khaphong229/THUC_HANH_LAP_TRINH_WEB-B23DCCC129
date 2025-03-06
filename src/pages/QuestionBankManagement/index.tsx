@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from 'umi';
 import KhoiKienThuc from './KhoiKienThuc';
 import MonHoc from './MonHoc';
@@ -21,13 +20,13 @@ export default function QuestionBankManagement() {
 		if (pathname.includes('/de-thi')) {
 			return <DeThi />;
 		}
-		// Mặc định hiển thị KhoiKienThuc
+
 		return <KhoiKienThuc />;
 	};
 
 	return (
 		<div>
-			<h1 className='text-2xl font-bold text-center my-4'>Hệ thống ngân hàng câu hỏi</h1>
+			<h1>Hệ thống ngân hàng câu hỏi</h1>
 			{renderComponent()}
 		</div>
 	);

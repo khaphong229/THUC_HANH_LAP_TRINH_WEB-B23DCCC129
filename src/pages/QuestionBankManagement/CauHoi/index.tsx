@@ -157,13 +157,13 @@ const QuestionList: React.FC = () => {
 			key: 'knowledgeBlock',
 			width: 150,
 			ellipsis: true,
-			align: 'center' as 'center', //
+			align: 'center' as 'center',
 		},
 		{
 			title: 'Thao tác',
 			key: 'action',
 			width: 100,
-			align: 'center' as 'center', //,
+			align: 'center' as 'center',
 
 			render: (_: any, record: Question) => (
 				<Space size='small'>

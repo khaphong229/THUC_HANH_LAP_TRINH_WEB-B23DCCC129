@@ -18,7 +18,6 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ visible, onCancel, onSave, 
 	const fetchKnowledgeBlocks = async () => {
 		try {
 			setLoading(true);
-			// Thay đổi URL API này thành API thực của bạn
 			const response = await axios.get('https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/categories');
 			setKnowledgeBlocks(response.data);
 		} catch (error) {
@@ -31,8 +30,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ visible, onCancel, onSave, 
 	const fetchSubject = async () => {
 		try {
 			setLoading(true);
-			// Thay đổi URL API này thành API thực của bạn
-			const response = await axios.get('https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/categories');
+			const response = await axios.get('https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/subjects');
 			setSubjects(response.data);
 		} catch (error) {
 			console.error('Không thể tải danh sách khối kiến thức:', error);
@@ -68,7 +66,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ visible, onCancel, onSave, 
 	return (
 		<Modal
 			title={initialValues ? 'Sửa câu hỏi' : 'Thêm câu hỏi mới'}
-			visible={visible} // Sử dụng visible thay vì open nếu bạn đang dùng Ant Design 4.x
+			visible={visible}
 			onCancel={onCancel}
 			footer={[
 				<Button key='back' onClick={onCancel}>
@@ -139,7 +137,6 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ visible, onCancel, onSave, 
 							<>
 								{menu}
 								<div className='dropdown-divider' />
-								<div className='dropdown-footer'></div>
 							</>
 						)}
 					>
