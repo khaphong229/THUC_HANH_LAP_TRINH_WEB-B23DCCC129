@@ -1,19 +1,14 @@
 import React from 'react';
 import { Table, Button } from 'antd';
-
-interface Category {
-	id: number;
-	name: string;
-}
-
-interface CategoryTableProps {
-	categories: Category[];
-	onEdit: (category: Category) => void;
-	onDelete: (id: number) => void;
-}
+import { Category, CategoryTableProps } from '@/services/KhoiKienThuc/typing';
 
 const CategoryTable: React.FC<CategoryTableProps> = ({ categories, onEdit, onDelete }) => {
 	const columns = [
+		{
+			title: 'Mã khối kiến thức',
+			dataIndex: 'id',
+			key: 'id',
+		},
 		{
 			title: 'Tên khối kiến thức',
 			dataIndex: 'name',

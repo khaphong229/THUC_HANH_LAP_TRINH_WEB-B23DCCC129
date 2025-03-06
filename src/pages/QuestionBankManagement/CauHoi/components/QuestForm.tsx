@@ -1,31 +1,12 @@
 // components/QuestionForm.tsx
 import React, { useEffect, useState } from 'react';
 import { Modal, Form, Input, Select, Button } from 'antd';
-import { Question, DifficultyLevel } from '@/services/CauHoi/types';
+import { Question, DifficultyLevel, QuestionFormProps, KnowledgeBlock, Subject } from '@/services/CauHoi/typing';
 import axios from 'axios';
 // import './QuestionForm.less';
 
 const { Option } = Select;
 const { TextArea } = Input;
-
-// Interface cho khối kiến thức từ API
-interface KnowledgeBlock {
-	id: string;
-	name: string;
-}
-
-interface Subject {
-	id: string;
-	name: string;
-}
-
-interface QuestionFormProps {
-	visible: boolean;
-	onCancel: () => void;
-	onSave: (values: any) => void;
-	initialValues: Question | null;
-	subjects: string[];
-}
 
 const QuestionForm: React.FC<QuestionFormProps> = ({ visible, onCancel, onSave, initialValues }) => {
 	const [form] = Form.useForm();

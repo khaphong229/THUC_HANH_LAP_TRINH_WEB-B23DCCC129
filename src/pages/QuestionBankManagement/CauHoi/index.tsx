@@ -3,7 +3,7 @@ import { Table, Button, Input, Select, Space, Modal, message, Row, Col } from 'a
 import { EditOutlined, DeleteOutlined, SearchOutlined, PlusOutlined } from '@ant-design/icons';
 import { questionService } from '@/services/CauHoi/api';
 import QuestionForm from './components/QuestForm';
-import { Question, DifficultyLevel } from '@/services/CauHoi/types';
+import { Question, DifficultyLevel } from '@/services/CauHoi/typing';
 import './QuestList.less';
 
 const { Option } = Select;

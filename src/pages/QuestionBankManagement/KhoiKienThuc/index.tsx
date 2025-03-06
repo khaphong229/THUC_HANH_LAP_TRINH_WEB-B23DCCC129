@@ -1,11 +1,9 @@
-// KnowledgeCategory.tsx
-
 import { useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
 import CategoryTable from './components/CategoryTable';
 import { getCategories, addCategory, updateCategory, deleteCategory } from '@/services/KhoiKienThuc/api';
 import './index.less';
-import { Category } from '@/services/KhoiKienThuc/types';
+import { Category } from '@/services/KhoiKienThuc/typing';
 
 export default function KnowledgeCategory() {
 	const [categories, setCategories] = useState<Category[]>([]);

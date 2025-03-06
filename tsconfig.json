@@ -34,7 +34,8 @@
 		".eslintrc.js",
 		".stylelintrc.js",
 		".prettierrc.js",
-		"mock/*"
+		"mock/*",
+		"src/services/KhoiKienThuc/typing.ts"
 	],
 	"exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
 }

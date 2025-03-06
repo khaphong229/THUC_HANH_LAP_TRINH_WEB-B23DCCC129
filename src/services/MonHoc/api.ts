@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Subject } from './types';
+import { Subject } from './typing';
 
 const API_URL = 'https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/subjects';
 

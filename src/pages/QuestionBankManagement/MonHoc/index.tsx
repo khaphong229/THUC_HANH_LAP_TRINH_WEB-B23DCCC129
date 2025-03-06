@@ -4,13 +4,7 @@ import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import './SubjectList.less';
 import SubjectForm from './components/SubjectForm';
 import { subjectService } from '@/services/MonHoc/api';
-
-interface Subject {
-	id?: string;
-	code: string;
-	name: string;
-	credits: number;
-}
+import { Subject } from '@/services/MonHoc/typing';
 
 const SubjectList = () => {
 	const [subjects, setSubjects] = useState<Subject[]>([]);

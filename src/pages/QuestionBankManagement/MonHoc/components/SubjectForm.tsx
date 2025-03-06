@@ -1,18 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
 import '../SubjectList.less';
-interface Subject {
-	_id?: string;
-	code: string;
-	name: string;
-	credits: number;
-}
-
-interface SubjectFormProps {
-	initialData?: Subject;
-	onSubmit: (formData: Subject) => void;
-	isEditing: boolean;
-}
+import { SubjectFormProps, Subject } from '@/services/MonHoc/typing';
 
 const SubjectForm: React.FC<SubjectFormProps> = ({ initialData, onSubmit, isEditing }) => {
 	const [form] = Form.useForm();

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Question, DifficultyLevel } from './types';
+import { Question, DifficultyLevel } from './typing';
 
 const API_URL = 'https://67c9224d0acf98d07088f20e.mockapi.io/api/bankquestions/questions';
 
