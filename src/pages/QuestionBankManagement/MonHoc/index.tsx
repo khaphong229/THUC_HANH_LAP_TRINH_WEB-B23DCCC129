@@ -3,13 +3,8 @@ import { Table, Button, Space, Modal, message } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import './SubjectList.less';
 import SubjectForm from './components/SubjectForm';
-
-interface Subject {
-	id?: string;
-	code: string;
-	name: string;
-	credits: number;
-}
+import { subjectService } from '@/services/MonHoc/api';
+import { Subject } from '@/services/MonHoc/typing';
 
 const SubjectList = () => {
 	const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -18,19 +13,17 @@ const SubjectList = () => {
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 	const [loading, setLoading] = useState<boolean>(false);
 
-	const fetchSubjects = () => {
+	const fetchSubjects = async () => {
 		setLoading(true);
-		fetch('https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/subjects')
-			.then((res) => res.json())
-			.then((data) => {
-				setSubjects(data);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.error('Lỗi khi tải danh sách môn học:', err);
-				message.error('Không thể tải danh sách môn học');
-				setLoading(false);
-			});
+		try {
+			const data = await subjectService.getAllSubjects();
+			setSubjects(data);
+		} catch (error) {
+			console.error('Lỗi khi tải danh sách môn học:', error);
+			message.error('Không thể tải danh sách môn học');
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const resetForm = () => {
@@ -39,76 +32,45 @@ const SubjectList = () => {
 		setIsModalVisible(false);
 	};
 
-	const addSubject = (formData: Subject) => {
+	const handleSubmit = async (formData: Subject) => {
 		setLoading(true);
-		fetch('https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/subjects', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(formData),
-		})
-			.then((res) => {
-				if (res.ok) {
-					fetchSubjects();
-					message.success('Thêm môn học thành công');
-					resetForm();
-				} else {
-					throw new Error('Failed to add subject');
-				}
-			})
-			.catch((err) => {
-				console.error('Lỗi khi thêm môn học:', err);
-				message.error('Không thể thêm môn học');
-				setLoading(false);
-			});
+		try {
+			if (editingId) {
+				await subjectService.updateSubject(editingId, formData);
+				message.success('Cập nhật môn học thành công');
+			} else {
+				await subjectService.createSubject(formData);
+				message.success('Thêm môn học thành công');
+			}
+			fetchSubjects();
+			resetForm();
+		} catch (error) {
+			console.error('Lỗi khi lưu môn học:', error);
+			message.error('Không thể lưu môn học');
+		} finally {
+			setLoading(false);
+		}
 	};
 
-	const updateSubject = (formData: Subject) => {
-		setLoading(true);
-		fetch(`https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/subjects/${editingId}`, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(formData),
-		})
-			.then((res) => {
-				if (res.ok) {
-					fetchSubjects();
-					message.success('Cập nhật môn học thành công');
-					resetForm();
-				} else {
-					throw new Error('Failed to update subject');
-				}
-			})
-			.catch((err) => {
-				console.error('Lỗi khi cập nhật môn học:', err);
-				message.error('Không thể cập nhật môn học');
-				setLoading(false);
-			});
-	};
-	const deleteSubject = (id: string) => {
+	const handleDelete = (id: string) => {
 		Modal.confirm({
 			title: 'Xác nhận xóa môn học',
 			content: 'Bạn có chắc chắn muốn xóa môn học này không?',
 			okText: 'Xóa',
 			okType: 'danger',
 			cancelText: 'Hủy',
-			onOk() {
+			onOk: async () => {
 				setLoading(true);
-				fetch(`https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/subjects/${id}`, {
-					method: 'DELETE',
-				})
-					.then((res) => {
-						if (res.ok) {
-							fetchSubjects();
-							message.success('Xóa môn học thành công');
-						} else {
-							throw new Error('Failed to delete subject');
-						}
-					})
-					.catch((err) => {
-						console.error('Lỗi khi xóa môn học:', err);
-						message.error('Không thể xóa môn học');
-						setLoading(false);
-					});
+				try {
+					await subjectService.deleteSubject(id);
+					message.success('Xóa môn học thành công');
+					fetchSubjects();
+				} catch (error) {
+					console.error('Lỗi khi xóa môn học:', error);
+					message.error('Không thể xóa môn học');
+				} finally {
+					setLoading(false);
+				}
 			},
 		});
 	};
@@ -116,14 +78,6 @@ const SubjectList = () => {
 	useEffect(() => {
 		fetchSubjects();
 	}, []);
-
-	const handleSubmit = (formData: Subject) => {
-		if (editingId) {
-			updateSubject(formData);
-		} else {
-			addSubject(formData);
-		}
-	};
 
 	const handleAdd = () => {
 		setEditingId(null);
@@ -143,28 +97,32 @@ const SubjectList = () => {
 			dataIndex: 'code',
 			key: 'code',
 			sorter: (a: Subject, b: Subject) => a.code.localeCompare(b.code),
+			align: 'cetner' as 'center',
 		},
 		{
 			title: 'Tên môn',
 			dataIndex: 'name',
 			key: 'name',
 			sorter: (a: Subject, b: Subject) => a.name.localeCompare(b.name),
+			align: 'cetner' as 'center',
 		},
 		{
 			title: 'Số tín chỉ',
 			dataIndex: 'credits',
 			key: 'credits',
 			sorter: (a: Subject, b: Subject) => a.credits - b.credits,
+			align: 'cetner' as 'center',
 		},
 		{
 			title: 'Hành động',
 			key: 'action',
+			align: 'cetner' as 'center',
 			render: (_: any, record: Subject) => (
 				<Space size='middle'>
 					<Button type='primary' icon={<EditOutlined />} onClick={() => handleEdit(record)}>
 						Sửa
 					</Button>
-					<Button danger icon={<DeleteOutlined />} onClick={() => deleteSubject(record.id!)}>
+					<Button danger icon={<DeleteOutlined />} onClick={() => handleDelete(record.id!)}>
 						Xóa
 					</Button>
 				</Space>
@@ -188,7 +146,7 @@ const SubjectList = () => {
 				visible={isModalVisible}
 				onCancel={resetForm}
 				footer={null}
-				destroyOnClose={true}
+				destroyOnClose
 			>
 				<SubjectForm initialData={currentSubject} onSubmit={handleSubmit} isEditing={!!editingId} />
 			</Modal>
