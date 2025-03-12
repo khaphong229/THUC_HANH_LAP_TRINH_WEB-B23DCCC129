@@ -1,5 +1,3 @@
-// categoryService.ts
-
 const API_URL = 'https://67c911ae0acf98d070888f0a.mockapi.io/api/thweb/categories';
 
 export const getCategories = async () => {
