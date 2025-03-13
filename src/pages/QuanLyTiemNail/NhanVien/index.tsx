@@ -60,12 +60,7 @@ export default function EmployeeManagement() {
 				onCancelEdit={handleCancelEdit}
 			/>
 
-			<EmployeeList
-				employees={employees}
-				loading={loading}
-				onEdit={handleEdit}
-				onDelete={deleteEmployee}
-			/>
+			<EmployeeList employees={employees} loading={loading} onEdit={handleEdit} onDelete={deleteEmployee} />
 		</Space>
 	);
 }
