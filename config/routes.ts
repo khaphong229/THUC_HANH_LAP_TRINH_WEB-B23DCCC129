@@ -88,6 +88,40 @@
 			},
 		],
 	},
+	{
+		path: '/tiem-nail',
+		component: './QuanLyTiemNail',
+		name: 'Quản lý tiệm nail',
+		icon: 'HighlightOutlined',
+		routes: [
+			{
+				name: 'Nhân viên',
+				path: 'nhan-vien',
+				component: './QuanLyTiemNail/NhanVien',
+			},
+			{
+				name: 'Dịch vụ',
+				path: 'dich-vu',
+				component: './QuanLyTiemNail/DichVu',
+			},
+			{
+				name: 'Lịch hẹn',
+				path: 'lich-hen',
+				component: './QuanLyTiemNail/LichHen',
+			},
+			{
+				name: 'Đánh giá',
+				path: 'danh-gia',
+				component: './QuanLyTiemNail/DanhGia',
+			},
+			{
+				name: 'Thống kê',
+				path: 'thong-ke',
+				component: './QuanLyTiemNail/ThongKe',
+			},
+		],
+	},
+	
 
 	// DANH MUC HE THONG
 	// {
