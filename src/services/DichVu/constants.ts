@@ -1,0 +1,2 @@
+export const API_URL = 'https://67d23b2f90e0670699bcba98.mockapi.io/api/v1/tiem-nail/dich-vu';
+export const EMPLOYEE_API_URL = 'https://67d23b2f90e0670699bcba98.mockapi.io/api/v1/tiem-nail/nhan-vien'; 
