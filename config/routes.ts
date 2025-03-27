@@ -1,5 +1,5 @@
-﻿import component from "@/locales/en-US/component";
-import path from "path";
+﻿import component from '@/locales/en-US/component';
+import path from 'path';
 
 export default [
 	{
@@ -155,11 +155,8 @@ export default [
 				path: 'tra-cuu-van-bang',
 				component: './QuanLyVanBang/TraCuuVanBang',
 			},
-			
-			
 		],
 	},
-
 
 	// DANH MUC HE THONG
 	// {
