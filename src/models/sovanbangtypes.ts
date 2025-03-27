@@ -4,7 +4,6 @@ import { getGraduationDecisions, createGraduationDecision, updateGraduationDecis
 import { getCertificateTemplateFields, createCertificateTemplateField, updateCertificateTemplateField, deleteCertificateTemplateField } from '@/services/BieuMau';
 import { searchCertificates } from '@/services/TraCuu';
 
-// Define namespaces for better type organization
 export namespace VanBang {
   export interface GraduationBook {
     id?: string;
@@ -72,17 +71,14 @@ export default () => {
   const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Fetch all initial data
   const fetchInitialData = useCallback(async () => {
     setIsLoading(true);
     
     try {
-      // Tách các lệnh gọi API để có thể xử lý lỗi riêng cho từng API
       try {
         const booksResponse = await getGraduationBooks();
         setGraduationBooks(booksResponse);
         
-        // Set active graduation book to the newest one, if any
         if (booksResponse.length > 0) {
           const newestBook = booksResponse.reduce((newest, current) => 
             current.year > newest.year ? current : newest, booksResponse[0]);
@@ -117,7 +113,6 @@ export default () => {
     }
   }, []);
 
-  // GraduationBook operations
   const addGraduationBook = useCallback(async (book: VanBang.GraduationBook) => {
     try {
       const response = await createGraduationBook(book);
@@ -134,7 +129,6 @@ export default () => {
       const response = await updateGraduationBook(book);
       setGraduationBooks(prev => prev.map(item => (item.id === book.id ? response : item)));
       
-      // Update active book if it's the one being updated
       if (activeGraduationBook?.id === book.id) {
         setActiveGraduationBook(response);
       }
@@ -146,13 +140,11 @@ export default () => {
     }
   }, [activeGraduationBook]);
 
-  // Certificate operations
   const addCertificate = useCallback(async (certificate: VanBang.Certificate) => {
     try {
       const response = await createCertificate(certificate);
       setCertificates(prev => [...prev, response]);
       
-      // Update the book's current sequence number if the certificate belongs to the active book
       if (activeGraduationBook?.id === certificate.graduationBookId) {
         setActiveGraduationBook(prev => prev ? {
           ...prev,
@@ -188,7 +180,6 @@ export default () => {
     }
   }, []);
 
-  // GraduationDecision operations
   const addGraduationDecision = useCallback(async (decision: QuyetDinh.GraduationDecision) => {
     try {
       const response = await createGraduationDecision(decision);
@@ -221,7 +212,6 @@ export default () => {
     }
   }, []);
 
-  // CertificateTemplateField operations
   const addTemplateField = useCallback(async (field: BieuMau.CertificateTemplateField) => {
     try {
       const response = await createCertificateTemplateField(field);
@@ -254,7 +244,6 @@ export default () => {
     }
   }, []);
 
-  // Search operations
   const searchCertificatesHandler = useCallback(async (params: TraCuu.SearchParams) => {
     try {
       const results = await searchCertificates(params);
@@ -268,7 +257,6 @@ export default () => {
   }, []);
 
   return {
-    // State
     graduationBooks,
     activeGraduationBook,
     certificates,
@@ -278,7 +266,6 @@ export default () => {
     searchPerformed,
     isLoading,
     
-    // Operations
     fetchInitialData,
     addGraduationBook,
     updateGraduationBook: updateGraduationBookHandler,
@@ -293,4 +280,4 @@ export default () => {
     deleteTemplateField: deleteTemplateFieldHandler,
     searchCertificates: searchCertificatesHandler,
   };
-}; 
+};
