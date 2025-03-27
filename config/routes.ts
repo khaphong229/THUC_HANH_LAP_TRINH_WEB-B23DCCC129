@@ -131,7 +131,7 @@ export default [
 		icon: 'ReconciliationOutlined',
 		routes: [
 			{
-				name: 'Quảnlý sổ văn bằng',
+				name: 'Quản lý sổ văn bằng',
 				path: 'quan-ly-so-van-bang',
 				component: './QuanLyVanBang/SoVanBang',
 			},
