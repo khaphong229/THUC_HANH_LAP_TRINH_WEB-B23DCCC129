@@ -4,52 +4,9 @@ import { incrementLookupCount } from '@/services/QuyetDinh';
 
 const BASE_URL = 'https://67e535d218194932a5851205.mockapi.io/api/vanbang';
 
-async function checkApiConnection(url: string): Promise<boolean> {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
-  } catch (error) {
-    console.error('API connection check failed:', error);
-    return false;
-  }
-}
-
 export async function searchCertificates(params: TraCuu.SearchParams): Promise<TraCuu.SearchResult[]> {
   try {
     const { keyword, studentId, fullName, certificateNumber, decisionNumber, graduationYear } = params;
-    
-    const isConnected = await checkApiConnection(`${BASE_URL}/certificates`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return [
-        {
-          id: 'mock1',
-          graduationBookId: 'book1',
-          sequenceNumber: 1,
-          certificateNumber: 'CERT001',
-          studentId: 'STU001',
-          fullName: 'Nguyễn Văn A',
-          dateOfBirth: '2000-01-01',
-          graduationDecisionId: 'dec1',
-          decisionNumber: 'QD-001/2023',
-          issuedDate: '2023-06-15',
-          graduationYear: 2023
-        },
-        {
-          id: 'mock2',
-          graduationBookId: 'book1',
-          sequenceNumber: 2,
-          certificateNumber: 'CERT002',
-          studentId: 'STU002',
-          fullName: 'Trần Thị B',
-          dateOfBirth: '2000-02-02',
-          graduationDecisionId: 'dec1',
-          decisionNumber: 'QD-001/2023',
-          issuedDate: '2023-06-15',
-          graduationYear: 2023
-        }
-      ];
-    }
     
     let queryUrl = `${BASE_URL}/certificates`;
     
@@ -102,57 +59,12 @@ export async function searchCertificates(params: TraCuu.SearchParams): Promise<T
     return searchResults;
   } catch (error) {
     console.error('Error searching certificates:', error);
-    return [
-      {
-        id: 'mock1',
-        graduationBookId: 'book1',
-        sequenceNumber: 1,
-        certificateNumber: 'CERT001',
-        studentId: 'STU001',
-        fullName: 'Nguyễn Văn A',
-        dateOfBirth: '2000-01-01',
-        graduationDecisionId: 'dec1',
-        decisionNumber: 'QD-001/2023',
-        issuedDate: '2023-06-15',
-        graduationYear: 2023
-      },
-      {
-        id: 'mock2',
-        graduationBookId: 'book1',
-        sequenceNumber: 2,
-        certificateNumber: 'CERT002',
-        studentId: 'STU002',
-        fullName: 'Trần Thị B',
-        dateOfBirth: '2000-02-02',
-        graduationDecisionId: 'dec1',
-        decisionNumber: 'QD-001/2023',
-        issuedDate: '2023-06-15',
-        graduationYear: 2023
-      }
-    ];
+    throw error;
   }
 }
 
 export async function getCertificateDetail(id: string): Promise<TraCuu.SearchResult> {
   try {
-    const isConnected = await checkApiConnection(`${BASE_URL}/certificates/${id}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return {
-        id,
-        graduationBookId: 'book1',
-        sequenceNumber: 1,
-        certificateNumber: 'CERT001',
-        studentId: 'STU001',
-        fullName: 'Nguyễn Văn A',
-        dateOfBirth: '2000-01-01',
-        graduationDecisionId: 'dec1',
-        decisionNumber: 'QD-001/2023',
-        issuedDate: '2023-06-15',
-        graduationYear: 2023
-      };
-    }
-    
     const certificate = await request(`${BASE_URL}/certificates/${id}`, {
       method: 'GET',
     });
@@ -173,30 +85,12 @@ export async function getCertificateDetail(id: string): Promise<TraCuu.SearchRes
     };
   } catch (error) {
     console.error(`Error fetching certificate detail with id ${id}:`, error);
-    return {
-      id,
-      graduationBookId: 'book1',
-      sequenceNumber: 1,
-      certificateNumber: 'CERT001',
-      studentId: 'STU001',
-      fullName: 'Nguyễn Văn A',
-      dateOfBirth: '2000-01-01',
-      graduationDecisionId: 'dec1',
-      decisionNumber: 'QD-001/2023',
-      issuedDate: '2023-06-15',
-      graduationYear: 2023
-    };
+    throw error;
   }
 }
 
 export async function validateCertificate(certificateNumber: string, studentId: string): Promise<boolean> {
   try {
-    const isConnected = await checkApiConnection(`${BASE_URL}/certificates`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock validation');
-      return true; // Giả lập luôn đúng khi không kết nối được API
-    }
-    
     const certificates = await request(`${BASE_URL}/certificates`, {
       method: 'GET',
     });
@@ -208,18 +102,12 @@ export async function validateCertificate(certificateNumber: string, studentId: 
     return validCertificate;
   } catch (error) {
     console.error('Error validating certificate:', error);
-    return true; // Giả lập luôn đúng khi có lỗi
+    return false;
   }
 }
 
 export async function recordSearch(decisionId: string) {
   try {
-    const isConnected = await checkApiConnection(`${BASE_URL}/decisions/${decisionId}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, skipping search recording');
-      return;
-    }
-    
     const decision = await request(`${BASE_URL}/decisions/${decisionId}`, {
       method: 'GET',
     });

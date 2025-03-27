@@ -1,6 +1,7 @@
 import { request } from 'umi';
 import { VanBang } from '@/models/sovanbangtypes';
 
+// API Types
 export interface DegreeBook {
   id?: string;
   year: number;
@@ -20,7 +21,7 @@ export interface DegreeInfo {
   birthDate: string;
   decisionId: string;
   degreeBookId: string;
-  formFeildId?: string;
+  formFeildId?: string; // Note: typo in API
   created_at?: string;
   customFields?: Record<string, any>;
 }
@@ -28,71 +29,38 @@ export interface DegreeInfo {
 const BASE_URL = 'https://67e4bdd52ae442db76d5652c.mockapi.io/api/degrees';
 const CERTIFICATES_URL = 'https://67e535d218194932a5851205.mockapi.io/api/vanbang';
 
-async function checkApiConnection(url: string): Promise<boolean> {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
-  } catch (error) {
-    console.error('API connection check failed:', error);
-    return false;
-  }
-}
-
+// GraduationBook API services
 export async function getGraduationBooks(): Promise<VanBang.GraduationBook[]> {
   try {
-    const isConnected = await checkApiConnection(`${BASE_URL}/graduationBooks`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return [
-        { id: 'mock1', year: 2023, currentSequenceNumber: 100 },
-        { id: 'mock2', year: 2024, currentSequenceNumber: 50 }
-      ];
-    }
-    
     return await request(`${BASE_URL}/graduationBooks`, {
       method: 'GET',
     });
   } catch (error) {
     console.error('Error fetching graduation books:', error);
-    return [
-      { id: 'mock1', year: 2023, currentSequenceNumber: 100 },
-      { id: 'mock2', year: 2024, currentSequenceNumber: 50 }
-    ];
+    throw error;
   }
 }
 
 export async function getGraduationBookById(id: string): Promise<VanBang.GraduationBook> {
   try {
-    const isConnected = await checkApiConnection(`${BASE_URL}/graduationBooks/${id}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return { id, year: 2023, currentSequenceNumber: 100 };
-    }
-    
     return await request(`${BASE_URL}/graduationBooks/${id}`, {
       method: 'GET',
     });
   } catch (error) {
     console.error(`Error fetching graduation book with id ${id}:`, error);
-    return { id, year: 2023, currentSequenceNumber: 100 };
+    throw error;
   }
 }
 
 export async function createGraduationBook(data: VanBang.GraduationBook): Promise<VanBang.GraduationBook> {
   try {
-    const isConnected = await checkApiConnection(BASE_URL);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return { ...data, id: 'mock-' + Date.now() };
-    }
-    
     return await request(`${BASE_URL}/graduationBooks`, {
       method: 'POST',
       data,
     });
   } catch (error) {
     console.error('Error creating graduation book:', error);
-    return { ...data, id: 'mock-' + Date.now() };
+    throw error;
   }
 }
 
@@ -102,111 +70,48 @@ export async function updateGraduationBook(data: VanBang.GraduationBook): Promis
   }
   
   try {
-    const isConnected = await checkApiConnection(`${BASE_URL}/graduationBooks/${data.id}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return data;
-    }
-    
     return await request(`${BASE_URL}/graduationBooks/${data.id}`, {
       method: 'PUT',
       data,
     });
   } catch (error) {
     console.error('Error updating graduation book:', error);
-    return data;
+    throw error;
   }
 }
 
+// Certificate API services
 export async function getCertificates(): Promise<VanBang.Certificate[]> {
   try {
-    const isConnected = await checkApiConnection(`${CERTIFICATES_URL}/certificates`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return [
-        { 
-          id: 'mock1', 
-          graduationBookId: 'mock1', 
-          sequenceNumber: 1, 
-          certificateNumber: 'CERT001', 
-          studentId: 'STU001',
-          fullName: 'Nguyễn Văn A',
-          dateOfBirth: '2000-01-01',
-          graduationDecisionId: 'dec1'
-        }
-      ];
-    }
-    
     return await request(`${CERTIFICATES_URL}/certificates`, {
       method: 'GET',
     });
   } catch (error) {
     console.error('Error fetching certificates:', error);
-    return [
-      { 
-        id: 'mock1', 
-        graduationBookId: 'mock1', 
-        sequenceNumber: 1, 
-        certificateNumber: 'CERT001', 
-        studentId: 'STU001',
-        fullName: 'Nguyễn Văn A',
-        dateOfBirth: '2000-01-01',
-        graduationDecisionId: 'dec1'
-      }
-    ];
+    throw error;
   }
 }
 
 export async function getCertificateById(id: string): Promise<VanBang.Certificate> {
   try {
-    const isConnected = await checkApiConnection(`${CERTIFICATES_URL}/certificates/${id}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return { 
-        id,
-        graduationBookId: 'mock1', 
-        sequenceNumber: 1, 
-        certificateNumber: 'CERT001', 
-        studentId: 'STU001',
-        fullName: 'Nguyễn Văn A',
-        dateOfBirth: '2000-01-01',
-        graduationDecisionId: 'dec1'
-      };
-    }
-    
     return await request(`${CERTIFICATES_URL}/certificates/${id}`, {
       method: 'GET',
     });
   } catch (error) {
     console.error(`Error fetching certificate with id ${id}:`, error);
-    return { 
-      id,
-      graduationBookId: 'mock1', 
-      sequenceNumber: 1, 
-      certificateNumber: 'CERT001', 
-      studentId: 'STU001',
-      fullName: 'Nguyễn Văn A',
-      dateOfBirth: '2000-01-01',
-      graduationDecisionId: 'dec1'
-    };
+    throw error;
   }
 }
 
 export async function createCertificate(data: VanBang.Certificate): Promise<VanBang.Certificate> {
   try {
-    const isConnected = await checkApiConnection(`${CERTIFICATES_URL}/certificates`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return { ...data, id: 'mock-' + Date.now() };
-    }
-    
     return await request(`${CERTIFICATES_URL}/certificates`, {
       method: 'POST',
       data,
     });
   } catch (error) {
     console.error('Error creating certificate:', error);
-    return { ...data, id: 'mock-' + Date.now() };
+    throw error;
   }
 }
 
@@ -216,38 +121,28 @@ export async function updateCertificate(data: VanBang.Certificate): Promise<VanB
   }
   
   try {
-    const isConnected = await checkApiConnection(`${CERTIFICATES_URL}/certificates/${data.id}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, returning mock data');
-      return data;
-    }
-    
     return await request(`${CERTIFICATES_URL}/certificates/${data.id}`, {
       method: 'PUT',
       data,
     });
   } catch (error) {
     console.error('Error updating certificate:', error);
-    return data;
+    throw error;
   }
 }
 
 export async function deleteCertificate(id: string): Promise<void> {
   try {
-    const isConnected = await checkApiConnection(`${CERTIFICATES_URL}/certificates/${id}`);
-    if (!isConnected) {
-      console.error('Cannot connect to API, operation would fail in production');
-      return;
-    }
-    
     return await request(`${CERTIFICATES_URL}/certificates/${id}`, {
       method: 'DELETE',
     });
   } catch (error) {
     console.error('Error deleting certificate:', error);
+    throw error;
   }
 }
 
+// DegreeBook API services
 export async function getDegreeBooks(): Promise<VanBang.DegreeBook[]> {
   try {
     return await request(`${BASE_URL}/sovanbang`, {
@@ -318,6 +213,7 @@ export async function closeDegreeBook(id: string, closeDate: string): Promise<Va
   }
 }
 
+// DegreeInfo API services
 export async function getDegreeInfos(): Promise<VanBang.DegreeInfo[]> {
   try {
     return await request(`${BASE_URL}/degreeinfor`, {
@@ -377,4 +273,4 @@ export async function deleteDegreeInfo(id: string): Promise<void> {
     console.error('Error deleting degree info:', error);
     throw error;
   }
-}
+} 
