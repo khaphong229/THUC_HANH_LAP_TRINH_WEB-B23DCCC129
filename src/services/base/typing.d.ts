@@ -45,6 +45,7 @@ export interface IInitialState {
 	currentUser?: Login.IUser;
 	authorizedPermissions?: Login.IPermission[];
 	permissionLoading?: boolean;
+	vanBangModel?: any; // Model for the degree management system
 }
 
 export interface ISetting {
