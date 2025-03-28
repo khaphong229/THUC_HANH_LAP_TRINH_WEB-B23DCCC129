@@ -1,5 +1,5 @@
-﻿import component from "@/locales/en-US/component";
-import path from "path";
+﻿import component from '@/locales/en-US/component';
+import path from 'path';
 
 export default [
 	{
@@ -130,7 +130,6 @@ export default [
 		name: 'Quản Lý Sổ Văn Bằng',
 		icon: 'BookOutlined',
 	},
-	
 
 	// DANH MUC HE THONG
 	// {
