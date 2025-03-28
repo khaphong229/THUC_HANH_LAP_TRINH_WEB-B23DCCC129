@@ -82,6 +82,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 		footerRender: () => <Footer />,
 
 		onPageChange: () => {
+			// Check if initialState and currentUser exist
 			if (initialState?.currentUser) {
 				const { location } = history;
 				const isUncheckPath = unCheckPermissionPaths.some((path) => window.location.pathname.includes(path));
@@ -95,6 +96,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 					!initialState?.authorizedPermissions?.find((item) => item.rsname === currentRole)
 				)
 					history.replace('/403');
+			} else if (location?.pathname === '/') {
+				// If no user is logged in and we're at the root path
+				history.replace('/dashboard');
 			}
 		},
 

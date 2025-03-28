@@ -1,4 +1,7 @@
-﻿export default [
+﻿import component from '@/locales/en-US/component';
+import path from 'path';
+
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -121,7 +124,12 @@
 			},
 		],
 	},
-	
+	{
+		path: '/quan-ly-so-van-bang',
+		component: './QuanLyVanBang',
+		name: 'Quản Lý Sổ Văn Bằng',
+		icon: 'BookOutlined',
+	},
 
 	// DANH MUC HE THONG
 	// {
