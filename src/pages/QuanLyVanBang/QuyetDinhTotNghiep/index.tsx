@@ -6,17 +6,12 @@ import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import type { QuyetDinh } from '@/models/sovanbangtypes';
 import { useModel } from 'umi';
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 const { TextArea } = Input;
 
 const QuyetDinhTotNghiep: React.FC = () => {
-	const {
-		graduationDecisions,
-		graduationBooks,
-		addGraduationDecision,
-		updateGraduationDecision,
-		deleteGraduationDecision,
-	} = useModel('sovanbangtypes');
+	const { graduationDecisions, addGraduationDecision, updateGraduationDecision, deleteGraduationDecision } =
+		useModel('sovanbangtypes');
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [editingDecision, setEditingDecision] = useState<QuyetDinh.GraduationDecision | null>(null);
 	const [form] = Form.useForm();
@@ -114,10 +109,10 @@ const QuyetDinhTotNghiep: React.FC = () => {
 
 	return (
 		<div className='graduation-decision-container'>
-			<div className='header-actions'>
+			<div className='header-actions' style={{ marginBottom: 20 }}>
 				<Title level={3}>Quản lý quyết định tốt nghiệp</Title>
 				<Button type='primary' icon={<PlusOutlined />} onClick={showAddModal}>
-					Thêm quyết định
+					Thêm quyết định mới
 				</Button>
 			</div>
 

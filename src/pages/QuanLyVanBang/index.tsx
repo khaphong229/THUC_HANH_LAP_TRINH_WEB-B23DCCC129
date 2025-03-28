@@ -32,14 +32,14 @@ const QuanLyVanBang: React.FC = () => {
 				<TabPane tab='Sổ văn bằng' key='1'>
 					<SoVanBang />
 				</TabPane>
-				<TabPane tab='Thông tin văn bằng' key='2'>
-					<ThongTinVanBang />
-				</TabPane>
 				<TabPane tab='Quyết định tốt nghiệp' key='3'>
 					<QuyetDinhTotNghiep />
 				</TabPane>
 				<TabPane tab='Cấu hình biểu mẫu' key='4'>
 					<CauHinhBieuMau />
+				</TabPane>
+				<TabPane tab='Thông tin văn bằng' key='2'>
+					<ThongTinVanBang />
 				</TabPane>
 				<TabPane tab='Tra cứu văn bằng' key='5'>
 					<TraCuuVanBang />

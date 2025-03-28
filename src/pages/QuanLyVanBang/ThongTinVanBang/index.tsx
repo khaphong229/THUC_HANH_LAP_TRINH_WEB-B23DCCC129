@@ -150,7 +150,7 @@ const ThongTinVanBang: React.FC = () => {
 
 	return (
 		<div className='certificate-container'>
-			<div className='header-actions'>
+			<div className='header-actions' style={{ marginBottom: 20 }}>
 				<Title level={3}>Thông tin văn bằng</Title>
 				<Button type='primary' icon={<PlusOutlined />} onClick={showAddModal}>
 					Thêm thông tin

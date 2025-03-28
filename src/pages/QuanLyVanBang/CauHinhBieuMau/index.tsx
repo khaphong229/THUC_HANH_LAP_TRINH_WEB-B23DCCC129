@@ -107,17 +107,17 @@ const CauHinhBieuMau: React.FC = () => {
 
 	return (
 		<div className='template-field-container'>
-			<div className='header-actions'>
+			<div className='header-actions' style={{ marginBottom: 20 }}>
 				<Title level={3}>Cấu hình biểu mẫu văn bằng</Title>
 				<Button type='primary' icon={<PlusOutlined />} onClick={showAddModal}>
-					Thêm trường
+					Thêm cấu hình mới
 				</Button>
 			</div>
 
 			<Table columns={columns} dataSource={templateFields} rowKey='id' pagination={{ pageSize: 10 }} />
 
 			<Modal
-				title={editingField ? 'Sửa trường biểu mẫu' : 'Thêm trường biểu mẫu mới'}
+				title={editingField ? 'Sửa cấu hình biểu mẫu' : 'Thêm cấu hình biểu mẫu mới'}
 				visible={isModalVisible}
 				onOk={handleOk}
 				onCancel={handleCancel}

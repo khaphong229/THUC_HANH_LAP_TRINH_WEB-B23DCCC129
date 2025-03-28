@@ -77,17 +77,17 @@ const SoVanBang: React.FC = () => {
 
 	return (
 		<div className='graduation-book-container'>
-			<div className='header-actions'>
+			<div className='header-actions' style={{ marginBottom: 20 }}>
 				<Title level={3}>Danh sách sổ văn bằng</Title>
 				<Button type='primary' icon={<PlusOutlined />} onClick={showAddModal}>
-					Thêm sổ mới
+					Thêm sổ văn bằng mới
 				</Button>
 			</div>
 
 			<Table columns={columns} dataSource={graduationBooks} rowKey='id' pagination={{ pageSize: 10 }} />
 
 			<Modal
-				title={editingBook ? 'Sửa thông tin sổ' : 'Thêm sổ văn bằng mới'}
+				title={editingBook ? 'Sửa thông tin sổ văn bằng' : 'Thêm sổ văn bằng mới'}
 				visible={isModalVisible}
 				onOk={handleOk}
 				onCancel={handleCancel}
