@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, InputNumber, Space, TimePicker, Select, Collapse, Card, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import moment from 'moment';
 import { dayMap } from '@/services/NhanVien/constants';
 
 const { Option } = Select;
