@@ -130,6 +130,12 @@ export default [
 		name: 'Quản Lý Sổ Văn Bằng',
 		icon: 'BookOutlined',
 	},
+	{
+		path: '/quan-ly-nhan-vien',
+		component : './QuanLyNhanVien',
+		name: 'Quản lý nhân viên',
+		icon: 'ContainerOutlined',
+	},
 
 	// DANH MUC HE THONG
 	// {
