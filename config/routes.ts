@@ -1,5 +1,5 @@
-﻿import component from "@/locales/en-US/component";
-import path from "path";
+﻿import component from '@/locales/en-US/component';
+import path from 'path';
 
 export default [
 	{
@@ -125,43 +125,11 @@ export default [
 		],
 	},
 	{
-		path: '/van-bang',
+		path: '/quan-ly-so-van-bang',
 		component: './QuanLyVanBang',
-		name: 'Quản Lý Văn Bằng',
-		icon: 'ReconciliationOutlined',
-		routes: [
-			{
-				name: 'Quảnlý sổ văn bằng',
-				path: 'quan-ly-so-van-bang',
-				component: './QuanLyVanBang/SoVanBang',
-			},
-			{
-				name: 'Quyết định tốt nghiệp',
-				path: 'quyet-dinh-tot-nghiep',
-				component: './QuanLyVanBang/QuyetDinhTotNghiep',
-			},
-			{
-				name: 'Cấu hình biểu mẫu',
-				path: 'cau-hinh-bieu-mau',
-				component: './QuanLyVanBang/CauHinhBieuMau',
-			},
-			{
-				name: 'Thông tin văn bằng',
-				path: 'thong-tin-van-bang',
-				component: './QuanLyVanBang/ThongTinVanBang',
-			},
-			{
-				name: 'Tra cứu văn bằng',
-				path: 'tra-cuu-van-bang',
-				component: './QuanLyVanBang/TraCuuVanBang',
-			},
-			
-			
-		],
+		name: 'Quản Lý Sổ Văn Bằng',
+		icon: 'BookOutlined',
 	},
-
-
-	
 
 	// DANH MUC HE THONG
 	// {
