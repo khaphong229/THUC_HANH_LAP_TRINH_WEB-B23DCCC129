@@ -7,9 +7,7 @@ export interface RegisterHistory {
 
 export interface Clubs{
     id:string,
-    fullName:string
-
-    
+    name:string
 }
   
   export interface Register {

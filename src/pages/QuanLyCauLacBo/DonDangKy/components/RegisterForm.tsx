@@ -24,6 +24,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         "https://67f729c442d6c71cca6435b5.mockapi.io/api/clb/cubs"
       );
       setClubs(res.data);
+      console.log(res.data)
     } catch (error) {
       console.error("Không thể tải danh sách câu lạc bộ", error);
     } finally {
@@ -48,13 +49,19 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     form
       .validateFields()
       .then((values) => {
-        onSave(values);
+        // Gán id nếu đang sửa
+        const formValues = {
+          ...values,
+          id: initialValues?.id || undefined,
+        };
+        onSave(formValues);
         form.resetFields();
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
       });
   };
+  
 
   return (
     <Modal
@@ -84,6 +91,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         >
           <Input />
         </Form.Item>
+
+     
 
         <Form.Item
           label="Email"
@@ -139,8 +148,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         >
           <Select placeholder="Chọn câu lạc bộ" loading={loading}>
             {clubs.map((club) => (
-              <Option key={club.id} value={parseInt(club.id)}>
-                {club.fullName}
+              <Option key={club.id} value={club.name}>
+                {club.name}
               </Option>
             ))}
           </Select>

@@ -9,7 +9,6 @@ export const RegisterService = {
     return response.data;
   },
 
-  // Bạn có thể thêm các method khác nếu muốn:
   getRegisterById: async (id: string): Promise<Register> => {
     const response = await axios.get(`${API_URL}/${id}`);
     return response.data;
