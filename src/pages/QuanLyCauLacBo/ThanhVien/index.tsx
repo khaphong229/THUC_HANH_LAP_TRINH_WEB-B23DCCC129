@@ -1,7 +1,7 @@
 import React from 'react';
 
 function index() {
-	return <div />;
+	return <div>Thành viên</div>;
 }
 
 export default index;

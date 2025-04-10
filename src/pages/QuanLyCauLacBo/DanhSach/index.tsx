@@ -1,7 +1,7 @@
 import React from 'react';
 
 function index() {
-	return <div />;
+	return <div>Danh Sách</div>;
 }
 
 export default index;
