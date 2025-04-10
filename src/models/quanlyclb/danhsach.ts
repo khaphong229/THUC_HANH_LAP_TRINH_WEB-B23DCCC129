@@ -1,5 +1,5 @@
 import type { Club, ClubTableParams } from '@/models/club';
-import { deleteClub, getClubs } from '@/services/QuanLyCauLacBo/DanhSach/club';
+import { deleteClub, getClubs } from '@/services/QuanLyCauLacBo/club';
 import { message } from 'antd';
 import { useState } from 'react';
 

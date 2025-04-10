@@ -5,7 +5,7 @@ import ClubTable from '../../../components/club/clubtable';
 import ClubForm from '../../../components/club/clubform';
 import MemberList from '../../../components/club/memberlist';
 import type { ClubFormValues } from '../../../models/club';
-import { createClub, updateClub } from '../../../services/QuanLyCauLacBo/DanhSach/club';
+import { createClub, updateClub } from '../../../services/QuanLyCauLacBo/club';
 import { useModel } from 'umi';
 
 const ClubManagement: React.FC = () => {
