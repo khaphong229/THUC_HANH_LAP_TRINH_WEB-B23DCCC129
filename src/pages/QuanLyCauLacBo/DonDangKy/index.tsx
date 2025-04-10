@@ -40,17 +40,25 @@ const RegisterList: React.FC = () => {
   };
 
   const handleSave = async (values: Register) => {
-    try {
-      await RegisterService.updateRegister(values.id.toString(), values);
-      message.success('Cập nhật thành công');
-      fetchRegisters();
-      setIsModalVisible(false);
-    } catch (error) {
-      message.error('Cập nhật thất bại');
-      console.error(error);
-    }
+	try {
+	  if (values.id) {
+		// Cập nhật
+		await RegisterService.updateRegister(values.id.toString(), values);
+		message.success('Cập nhật thành công');
+	  } else {
+		// Thêm mới
+		await RegisterService.createRegister(values);
+		message.success('Thêm mới thành công');
+	  }
+	  fetchRegisters();
+	  setIsModalVisible(false);
+	  setSelectedRegister(null);
+	} catch (error) {
+	  message.error('Lưu thất bại');
+	  console.error(error);
+	}
   };
-
+  
   const columns = [
     {
       title: 'Họ tên',
@@ -86,6 +94,10 @@ const RegisterList: React.FC = () => {
   return (
     <div>
       <h2>Danh sách đơn đăng ký</h2>
+	  <Button type="primary" onClick={() => setIsModalVisible(true)} style={{ marginBottom: 16 }}>
+		Thêm đơn đăng ký
+		</Button>
+
       <Table
         rowKey="id"
         columns={columns}
