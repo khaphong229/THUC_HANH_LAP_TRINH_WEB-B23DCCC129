@@ -1,70 +1,43 @@
-// src/pages/Club/index.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Card, Button, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import ClubTable from '../../../components/club/clubtable';
 import ClubForm from '../../../components/club/clubform';
 import MemberList from '../../../components/club/memberlist';
-import { Club, ClubFormValues, ClubTableParams } from '../../../models/club';
-import { getClubs, createClub, updateClub, deleteClub } from '../../../services/QuanLyCauLacBo/DanhSach/club';
+import type { ClubFormValues } from '../../../models/club';
+import { createClub, updateClub } from '../../../services/QuanLyCauLacBo/DanhSach/club';
+import { useModel } from 'umi';
 
 const ClubManagement: React.FC = () => {
-	const [clubs, setClubs] = useState<Club[]>([]);
-	const [loading, setLoading] = useState<boolean>(false);
-	const [modalVisible, setModalVisible] = useState<boolean>(false);
-	const [selectedClub, setSelectedClub] = useState<Club | undefined>(undefined);
-	const [formLoading, setFormLoading] = useState<boolean>(false);
-	const [viewingMembers, setViewingMembers] = useState<boolean>(false);
-	const [selectedClubId, setSelectedClubId] = useState<number | null>(null);
-	const [tableParams, setTableParams] = useState<ClubTableParams>({
-		pagination: {
-			current: 1,
-			pageSize: 10,
-		},
-	});
-
-	const fetchClubs = async (params: ClubTableParams) => {
-		setLoading(true);
-		try {
-			const { data, total } = await getClubs(params);
-			setClubs(data);
-			setTableParams({
-				...params,
-				pagination: {
-					...params.pagination,
-					total,
-				},
-			});
-		} catch (error) {
-			message.error('Không thể tải danh sách câu lạc bộ');
-		} finally {
-			setLoading(false);
-		}
-	};
+	const {
+		clubs,
+		setClubs,
+		loading,
+		setLoading,
+		modalVisible,
+		setModalVisible,
+		selectedClub,
+		setSelectedClub,
+		formLoading,
+		setFormLoading,
+		viewingMembers,
+		setViewingMembers,
+		selectedClubId,
+		setSelectedClubId,
+		tableParams,
+		setTableParams,
+		fetchClubs,
+		handleAddClub,
+		handleEditClub,
+		handleDeleteClub,
+		handleTableChange,
+		handleViewMembers,
+		handleBackToClubList,
+	} = useModel('quanlyclb.danhsach');
 
 	useEffect(() => {
 		fetchClubs(tableParams);
 	}, []);
-
-	const handleAddClub = () => {
-		setSelectedClub(undefined);
-		setModalVisible(true);
-	};
-
-	const handleEditClub = (club: Club) => {
-		setSelectedClub(club);
-		setModalVisible(true);
-	};
-
-	const handleDeleteClub = async (id: number) => {
-		try {
-			await deleteClub(id);
-			message.success('Xóa câu lạc bộ thành công');
-			fetchClubs(tableParams);
-		} catch (error) {
-			message.error('Không thể xóa câu lạc bộ');
-		}
-	};
 
 	const handleFormFinish = async (values: ClubFormValues) => {
 		setFormLoading(true);
@@ -85,32 +58,13 @@ const ClubManagement: React.FC = () => {
 		}
 	};
 
-	const handleTableChange = (params: ClubTableParams) => {
-		setTableParams(params);
-		fetchClubs(params);
-	};
-
-	const handleViewMembers = (clubId: number) => {
-		setSelectedClubId(clubId);
-		setViewingMembers(true);
-	};
-
-	const handleBackToClubList = () => {
-		setViewingMembers(false);
-		setSelectedClubId(null);
-	};
-
 	return (
-		<div style={{ padding: '24px' }}>
+		<div>
 			{!viewingMembers ? (
 				<Card
-					title="Danh sách câu lạc bộ"
+					title='Danh sách câu lạc bộ'
 					extra={
-						<Button
-							type="primary"
-							icon={<PlusOutlined />}
-							onClick={handleAddClub}
-						>
+						<Button type='primary' icon={<PlusOutlined />} onClick={handleAddClub}>
 							Thêm mới
 						</Button>
 					}
@@ -132,13 +86,12 @@ const ClubManagement: React.FC = () => {
 
 			<Modal
 				title={selectedClub ? 'Chỉnh sửa câu lạc bộ' : 'Thêm mới câu lạc bộ'}
-				visible={modalVisible} 
+				visible={modalVisible}
 				onCancel={() => setModalVisible(false)}
 				footer={null}
 				width={800}
 				destroyOnClose
 			>
-
 				<ClubForm
 					initialValues={selectedClub}
 					onFinish={handleFormFinish}
