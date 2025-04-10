@@ -20,3 +20,8 @@ export const fakeDataReport = {
 		},
 	],
 };
+
+export const approvedMembers = [
+	{ fullName: 'Nguyễn Văn A', email: 'nguyenvana@example.com', clubName: 'CLB Tin học' },
+	{ fullName: 'Trần Thị B', email: 'tranthib@example.com', clubName: 'CLB Văn nghệ' },
+];
