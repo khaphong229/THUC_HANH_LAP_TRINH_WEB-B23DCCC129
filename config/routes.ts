@@ -136,6 +136,12 @@ export default [
 		name: 'Quản Lý Câu Lạc Bộ',
 		icon: 'TeamOutlined',
 	},
+	{
+		path: '/quan-ly-nhan-vien',
+		component : './QuanLyNhanVien',
+		name: 'Quản lý nhân viên',
+		icon: 'ContainerOutlined',
+	},
 
 	// DANH MUC HE THONG
 	// {
