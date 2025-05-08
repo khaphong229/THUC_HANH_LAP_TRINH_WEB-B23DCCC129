@@ -1,5 +1,4 @@
 import { useLocation } from 'umi';
-import { Card } from 'antd';
 import TrangChu from './TrangChu';
 import LichTrinh from './LichTrinh';
 import NganSach from './NganSach';
