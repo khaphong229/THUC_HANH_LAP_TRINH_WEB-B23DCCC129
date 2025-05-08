@@ -1,4 +1,4 @@
-﻿import component from '@/locales/en-US/component';
+import component from '@/locales/en-US/component';
 import path from 'path';
 
 export default [
@@ -91,6 +91,7 @@ export default [
 			},
 		],
 	},
+
 	{
 		path: '/tiem-nail',
 		component: './QuanLyTiemNail',
@@ -124,37 +125,25 @@ export default [
 			},
 		],
 	},
-	{
-		path: '/quan-ly-so-van-bang',
-		component: './QuanLyVanBang',
-		name: 'Quản Lý Sổ Văn Bằng',
-		icon: 'BookOutlined',
-	},
+	// {
+	// 	path: '/quan-ly-so-van-bang',
+	// 	component: './QuanLyVanBang',
+	// 	name: 'Quản Lý Sổ Văn Bằng',
+	// 	icon: 'BookOutlined',
+	// },
 	{
 		path: '/quan-ly-cau-lac-bo',
 		component: './QuanLyCauLacBo',
 		name: 'Quản Lý Câu Lạc Bộ',
 		icon: 'TeamOutlined',
 	},
-	{
-		path: '/quan-ly-nhan-vien',
-		component: './QuanLyNhanVien',
-		name: 'Quản lý nhân viên',
-		icon: 'ContainerOutlined',
-	},
-	{
-		path: '/du-lich',
-		component: './KeHoachDuLich',
-		name: 'Lập kế hoạch du lịch',
-		icon: 'DingtalkOutlined',
-	},
 	// {
-	// 	path: '/du-lich-trang-chu',
-	// 	component: './TrangChuDuLich',
-	// 	name: 'Lập kế hoạch du lịch',
-	// 	icon: 'DingtalkOutlined',
+	// 	path: '/quan-ly-nhan-vien',
+	// 	component: './QuanLyNhanVien',
+	// 	name: 'Quản lý nhân viên',
+	// 	icon: 'ContainerOutlined',
 	// },
-	
+
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
@@ -168,7 +157,34 @@ export default [
 	// 		},
 	// 	],
 	// },
-
+	{
+		path: '/du-lich',
+		component: './KeHoachDuLich',
+		name: 'Lập kế hoạch du lịch',
+		icon: 'DingtalkOutlined',
+		routes: [
+			{
+				name: 'Trang chủ',
+				path: 'trang-chu',
+				component: './KeHoachDuLich/TrangChu',
+			},
+			{
+				name: 'Lịch trình',
+				path: 'lich-trinh',
+				component: './KeHoachDuLich/LichTrinh',
+			},
+			{
+				name: 'Ngân sách',
+				path: 'ngan-sach',
+				component: './KeHoachDuLich/NganSach',
+			},
+			{
+				name: 'Admin',
+				path: 'admin',
+				component: './KeHoachDuLich/Admin',
+			},
+		],
+	},
 	{
 		path: '/notification',
 		routes: [
