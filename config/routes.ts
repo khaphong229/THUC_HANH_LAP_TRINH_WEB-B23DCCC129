@@ -148,7 +148,13 @@ export default [
 		name: 'Lập kế hoạch du lịch',
 		icon: 'DingtalkOutlined',
 	},
-
+	// {
+	// 	path: '/du-lich-trang-chu',
+	// 	component: './TrangChuDuLich',
+	// 	name: 'Lập kế hoạch du lịch',
+	// 	icon: 'DingtalkOutlined',
+	// },
+	
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
