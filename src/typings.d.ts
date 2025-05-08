@@ -10,7 +10,15 @@ declare module '*.gif';
 declare module '*.bmp';
 declare module '*.tiff';
 declare module 'react-split-pane/lib/Pane';
+<<<<<<< HEAD
 declare module '@ant-design/charts'
+=======
+declare module '@ant-design/charts';
+declare module 'warning';
+
+
+
+>>>>>>> 6d112057f317ad58eb69f46111cf2c3703703294
 // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design Dedicated environment variable, please do not use it in your project.
 declare let ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: 'site' | undefined;

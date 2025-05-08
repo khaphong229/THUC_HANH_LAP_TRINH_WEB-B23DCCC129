@@ -4,6 +4,7 @@
 		"module": "esnext",
 		"target": "esnext",
 		"lib": ["esnext", "dom"],
+	    // "types": ["other-lib"],
 		"sourceMap": true,
 		"baseUrl": ".",
 		"jsx": "react-jsx",
