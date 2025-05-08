@@ -3,7 +3,6 @@ import { Employee } from "@/services/EmployeeMana/typing";
 import EmployeeForm from "../../components/Employee/EmployeeForm";
 import EmployeeList from "../../components/Employee/EmployeeList";
 import { Modal, Button, Select, Space,Input,message } from "antd";
-import { v4 as uuidv4 } from "uuid";
 
 
 const { Option } = Select;
