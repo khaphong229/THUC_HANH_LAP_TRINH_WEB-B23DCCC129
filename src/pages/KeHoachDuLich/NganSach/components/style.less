@@ -1,0 +1,98 @@
+
+
+/* Responsive styles */
+@media (max-width: 576px) {
+    .budget-management-page {
+      padding: 12px;
+    }
+    
+    .ant-statistic-title {
+      font-size: 14px;
+    }
+    
+    .ant-statistic-content {
+      font-size: 20px;
+    }
+  }
+  
+  @media (min-width: 577px) and (max-width: 768px) {
+    .budget-management-page {
+      padding: 16px;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .budget-management-page {
+      padding: 24px;
+    }
+  }
+  
+  /* Budget overview stat cards */
+  .budget-management-page .ant-card {
+    height: 100%;
+    transition: all 0.3s;
+  }
+  
+  .budget-management-page .ant-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Charts container */
+  .budget-distribution {
+    min-height: 300px;
+  }
+  
+  /* Alert styles */
+  .budget-alerts .ant-alert {
+    margin-bottom: 16px;
+  }
+  
+  .budget-alerts .ant-list-item {
+    padding: 12px;
+  }
+  
+  /* Budget details table */
+  .ant-table-cell .ant-typography {
+    margin-bottom: 0;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 576px) {
+    .ant-table-content {
+      overflow-x: auto;
+    }
+    
+    .ant-table-cell {
+      padding: 8px !important;
+    }
+    
+    .budget-distribution {
+      min-height: 250px;
+    }
+  }
+  
+  /* Enhance visual hierarchy */
+  .budget-management-page .ant-card-head {
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .budget-management-page .ant-card-head-title {
+    font-weight: 600;
+  }
+  
+  /* Add some spacing */
+  .budget-management-page .ant-row {
+    margin-bottom: 16px;
+  }
+  
+  /* Make sure charts are responsive */
+  .budget-distribution .ant-radio-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .budget-distribution .ant-radio-button-wrapper {
+    margin-bottom: 8px;
+  }
