@@ -138,9 +138,15 @@ export default [
 	},
 	{
 		path: '/quan-ly-nhan-vien',
-		component : './QuanLyNhanVien',
+		component: './QuanLyNhanVien',
 		name: 'Quản lý nhân viên',
 		icon: 'ContainerOutlined',
+	},
+	{
+		path: '/du-lich',
+		component: './KeHoachDuLich',
+		name: 'Lập kế hoạch du lịch',
+		icon: 'DingtalkOutlined',
 	},
 
 	// DANH MUC HE THONG
