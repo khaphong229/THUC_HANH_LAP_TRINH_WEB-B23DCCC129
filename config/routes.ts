@@ -197,7 +197,7 @@ export default [
 				path: './check',
 				exact: true,
 				component: './ThongBao/Check',
-			},
+			}, 
 			{
 				path: './',
 				exact: true,
