@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tabs } from 'antd';
+import { useModel } from 'umi';
 import DanhSach from './DanhSach';
 import DonDangKy from './DonDangKy';
 import ThanhVien from './ThanhVien';
 import BaoCao from './BaoCao';
 const { TabPane } = Tabs;
 
-const QuanLyVanBang: React.FC = () => {
-	const [activeKey, setActiveKey] = useState('1');
+const QuanLyCauLacBo: React.FC = () => {
+	// Handle directly in component as model integration might be causing issues
+	const [activeKey, setActiveKey] = React.useState('1');
 
 	const handleTabChange = (key: string) => {
 		setActiveKey(key);
@@ -21,20 +23,17 @@ const QuanLyVanBang: React.FC = () => {
 					<DanhSach />
 				</TabPane>
 				<TabPane tab='Quản lý đơn đăng ký thành viên' key='3'>
-					{' '}
-					<DonDangKy />{' '}
+					<DonDangKy />
 				</TabPane>
 				<TabPane tab='Quản lý thành viên câu lạc bộ' key='4'>
-					{' '}
-					<ThanhVien />{' '}
+					<ThanhVien />
 				</TabPane>
 				<TabPane tab='Báo cáo và thống kê' key='2'>
-					{' '}
-					<BaoCao />{' '}
+					<BaoCao />
 				</TabPane>
 			</Tabs>
 		</div>
 	);
 };
 
-export default QuanLyVanBang;
+export default QuanLyCauLacBo;

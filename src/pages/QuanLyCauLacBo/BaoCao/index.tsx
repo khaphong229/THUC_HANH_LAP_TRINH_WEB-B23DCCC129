@@ -1,7 +1,7 @@
 import React from 'react';
 
 function index() {
-	return <div>Báo Cáo</div>;
+	return <div>Bao Cao</div>;
 }
 
 export default index;
