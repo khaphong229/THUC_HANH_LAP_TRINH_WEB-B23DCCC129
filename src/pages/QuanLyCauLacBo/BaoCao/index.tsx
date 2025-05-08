@@ -42,7 +42,7 @@ const Report: React.FC = () => {
 					seriesField='clubName'
 					columnWidthRatio={0.5}
 					label={{
-						formatter: (v) => `${v}`,
+						formatter: (v: any) => `${v}`,
 					}}
 				/>
 
